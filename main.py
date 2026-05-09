@@ -40,7 +40,7 @@ async def random_pic(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def main():
     await client.start()
 
-    app = Application.builder().token(8775989237:AAHAVAZxvfk8a5V-65ksnjxBSTWize7HkbM).build()
+    app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("random", random_pic))
 
     await app.run_polling()
