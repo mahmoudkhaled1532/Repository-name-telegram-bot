@@ -10,12 +10,11 @@ API_ID = 1234567
 API_HASH = "8812f044a8b766c3f492d919976a8f03"
 CHANNEL = "https://t.me/l_mahmoud_khaled_oraby_l"  # بدون @
 
-# 📡 تشغيل Telethon
-client = TelegramClient("session", API_ID, API_HASH)
+
 
 # 📸 جلب صورة عشوائية من القناة
 async def get_random_image():
-    messages = await client.get_messages(CHANNEL, limit=50)
+    messages = await app.bot.getchathistoy(CHANNEL, limit=5)
     photos = [m for m in messages if m.photo]
 
     if not photos:
@@ -28,7 +27,7 @@ async def random_pic(update: Update, context: ContextTypes.DEFAULT_TYPE):
     img = await get_random_image()
 
     if img:
-        file = await client.download_media(img)
+        file = app.bot.download_file(img)
         await update.message.reply_photo(
             photo=file,
             caption="📸 صورة عشوائية من القناة"
